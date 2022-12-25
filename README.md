@@ -1,1 +1,1 @@
-# case-amaro
+# case-wirecard
