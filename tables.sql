@@ -17,5 +17,3 @@ CREATE TABLE IF NOT EXISTS Wirecard_payments (
     card_cvv VARCHAR(3),
     FOREIGN KEY (client_id) REFERENCES Wirecard_clients(id)
 );
-
-
