@@ -1,5 +1,5 @@
 {
-  "name": "case-amaro",
+  "name": "case-wirecard",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DiogoB0mfim/case-amaro.git"
+    "url": "git+https://github.com/DiogoB0mfim/case-wirecard.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DiogoB0mfim/case-amaro/issues"
+    "url": "https://github.com/DiogoB0mfim/case-wirecard/issues"
   },
-  "homepage": "https://github.com/DiogoB0mfim/case-amaro#readme",
+  "homepage": "https://github.com/DiogoB0mfim/case-wirecard#readme",
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
