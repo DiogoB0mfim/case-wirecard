@@ -39,3 +39,27 @@ export class InvalidUser extends CustomError {
     super(400, "Email ou senha incorretos!");
   }
 }
+
+export class InvalidMethod extends CustomError {
+  constructor() {
+    super(400, "Método de pagamento inválido!");
+  }
+}
+
+export class InvalidCard extends CustomError {
+  constructor() {
+    super(400, "Cartão inválido!");
+  }
+}
+
+export class InvalidToken extends CustomError {
+  constructor() {
+    super(400, "Token inválido!");
+  }
+}
+
+export class InvalidAuthenticatorData extends CustomError {
+  constructor() {
+    super(400, "Autenticador inválido!");
+  }
+}
