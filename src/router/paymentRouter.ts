@@ -6,3 +6,6 @@ const paymentController = new PaymentController();
 
 // Path para criar uma transação
 paymentRouter.post("/create-transaction", paymentController.createPayment);
+
+// Path para pegar as transações
+paymentRouter.get("/get-payments", paymentController.getPayments);

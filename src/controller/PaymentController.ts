@@ -21,7 +21,16 @@ export class PaymentController {
       };
 
       const result = await paymentBusiness.createPayment(newPayment, token);
-      
+
+      res.status(200).send({ data: result });
+    } catch (error: any) {
+      res.status(400).send(error.message);
+    }
+  }
+
+  public async getPayments(req: Request, res: Response) {
+    try {
+      const result = await paymentBusiness.getPayments();
       res.status(200).send({ data: result });
     } catch (error: any) {
       res.status(400).send(error.message);

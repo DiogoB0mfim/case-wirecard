@@ -63,3 +63,11 @@ export class InvalidAuthenticatorData extends CustomError {
     super(400, "Autenticador inválido!");
   }
 }
+
+export class NoPaymentsRegistered extends CustomError {
+  constructor() {
+    super(400, "Sem pagamentos registrados!");
+  }
+}
+
+

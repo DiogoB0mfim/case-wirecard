@@ -13,13 +13,14 @@ export class PaymentDatabase extends BaseDatabase {
       card_holder_name: payment.cardHolderName,
       card_number: payment.cardNumber,
       card_exp_date: payment.cardExpDate,
-      card_cvv: payment.cardCvv
+      card_cvv: payment.cardCvv,
     });
   }
 
   public async getPayments() {
-    const result = await BaseDatabase.connection(PaymentDatabase.table)
-    .select();
+    const result = await BaseDatabase.connection(
+      PaymentDatabase.table
+    ).select();
 
     return result;
   }

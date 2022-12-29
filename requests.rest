@@ -1,3 +1,4 @@
+
 POST http://localhost:3003/user/signup 
 Content-Type: application/json
 
@@ -20,14 +21,17 @@ Content-Type: application/json
 ###
 POST http://localhost:3003/payment/create-transaction
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZjLWZkYjQtNDlhOS04YTY2LTk2YjIyYjg2NTA5YiJ9LCJpYXQiOjE2NzIxOTQ5NTgsImV4cCI6MTY3MjE5ODU1OH0.ZQZRZlWjWlSkIVNFtcR8M3twyps_u4fTzmw1ZloNDek
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZjLWZkYjQtNDlhOS04YTY2LTk2YjIyYjg2NTA5YiJ9LCJpYXQiOjE2NzIyNzE1MzksImV4cCI6MTY3MjI3NTEzOX0.3sbHPwtJT7FZ4LHyaKNfn_Ntd3_79ucgS4dKzyPT1Pw
 
 {
     "clientId" : "6802c66c-fdb4-49a9-8a66-96b22b86509b", 
     "method" : "CARD", 
     "amount" : 125, 
-    "cardHolderName" : "", 
-    "cardNumber" : "", 
-    "cardExpDate" : "", 
-    "cardCvv" : ""
+    "cardHolderName" : "DIOGO O S BOMF", 
+    "cardNumber" : "4002892200331234", 
+    "cardExpDate" : "03/12/2024", 
+    "cardCvv" : "171"
 }
+
+###
+GET http://localhost:3003/payment/get-payments

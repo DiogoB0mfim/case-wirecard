@@ -1,8 +1,16 @@
 import { Payment, PaymentDTO, PaymentMethod } from "../models/Payment";
-import { CustomError, InvalidAuthenticatorData, InvalidCard, InvalidInfos, InvalidMethod, InvalidToken } from "../error/CustomError";
 import { IdGenerator } from "../services/IdGenerator";
 import { TokenGenerator } from "../services/TokenGenerator";
 import { PaymentDatabase } from "../data/PaymentDatabase";
+import {
+  CustomError,
+  InvalidAuthenticatorData,
+  InvalidCard,
+  InvalidInfos,
+  InvalidMethod,
+  InvalidToken,
+  NoPaymentsRegistered,
+} from "../error/CustomError";
 
 const paymentDatabase = new PaymentDatabase();
 const idGenerator = new IdGenerator();
@@ -18,7 +26,6 @@ export class PaymentBusiness {
       if (!clientId || !method || !amount) {
         throw new InvalidInfos();
       }
-      console.log(method)
 
       if (method !== PaymentMethod.BOLETO && method !== PaymentMethod.CARD) {
         throw new InvalidMethod();
@@ -35,7 +42,6 @@ export class PaymentBusiness {
       if (method === PaymentMethod.CARD && !cardHolderName || method === PaymentMethod.CARD && !cardNumber || method === PaymentMethod.CARD && !cardExpDate || method === PaymentMethod.CARD && !cardCvv) {
         throw new InvalidCard();
       }
-
 
       if (!token) {
         throw new InvalidToken();
@@ -61,7 +67,21 @@ export class PaymentBusiness {
       };
 
       await paymentDatabase.createPayment(newPayment);
-      return operationResponse
+      return operationResponse;
+    } catch (error: any) {
+      throw new CustomError(400, error.message);
+    }
+  }
+
+  public async getPayments() {
+    try {
+      const result = await paymentDatabase.getPayments();
+
+      if (result.length < 1) {
+        throw new NoPaymentsRegistered();
+      }
+
+      return result;
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
