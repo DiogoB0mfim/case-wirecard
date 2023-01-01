@@ -21,16 +21,16 @@ Content-Type: application/json
 ###
 POST http://localhost:3003/payment/create-transaction
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZjLWZkYjQtNDlhOS04YTY2LTk2YjIyYjg2NTA5YiJ9LCJpYXQiOjE2NzIyNzE1MzksImV4cCI6MTY3MjI3NTEzOX0.3sbHPwtJT7FZ4LHyaKNfn_Ntd3_79ucgS4dKzyPT1Pw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZjLWZkYjQtNDlhOS04YTY2LTk2YjIyYjg2NTA5YiJ9LCJpYXQiOjE2NzI1NDQxNjIsImV4cCI6MTY3MjU0Nzc2Mn0.9dpOq9SESVbvPzCq3egwKmanY-vN6vBwk6eCEaxigS4
 
 {
     "clientId" : "6802c66c-fdb4-49a9-8a66-96b22b86509b", 
-    "method" : "CARD", 
+    "method" : "BOLETO", 
     "amount" : 125, 
-    "cardHolderName" : "DIOGO O S BOMF", 
-    "cardNumber" : "4002892200331234", 
-    "cardExpDate" : "03/12/2024", 
-    "cardCvv" : "171"
+    "cardHolderName" : "", 
+    "cardNumber" : "", 
+    "cardExpDate" : "", 
+    "cardCvv" : ""
 }
 
 ###

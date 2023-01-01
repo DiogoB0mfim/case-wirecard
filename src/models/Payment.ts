@@ -3,6 +3,12 @@ export enum PaymentMethod {
   CARD = "CARD",
 }
 
+export enum PaymentStatus {
+  APROVADO = "APROVADO",
+  ESPERA = "ESPERA",
+  NEGADO = "NEGADO"
+}
+
 export type Payment = {
   paymentId: string;
   clientId: string;
@@ -12,6 +18,7 @@ export type Payment = {
   cardNumber: string;
   cardExpDate: string;
   cardCvv: string;
+  status: PaymentStatus;
 };
 
 export interface PaymentDTO {

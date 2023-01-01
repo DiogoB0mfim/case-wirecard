@@ -14,6 +14,7 @@ export class PaymentDatabase extends BaseDatabase {
       card_number: payment.cardNumber,
       card_exp_date: payment.cardExpDate,
       card_cvv: payment.cardCvv,
+      status : payment.status
     });
   }
 

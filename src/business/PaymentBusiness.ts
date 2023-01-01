@@ -1,4 +1,4 @@
-import { Payment, PaymentDTO, PaymentMethod } from "../models/Payment";
+import { Payment, PaymentDTO, PaymentMethod, PaymentStatus } from "../models/Payment";
 import { IdGenerator } from "../services/IdGenerator";
 import { TokenGenerator } from "../services/TokenGenerator";
 import { PaymentDatabase } from "../data/PaymentDatabase";
@@ -64,6 +64,7 @@ export class PaymentBusiness {
         cardNumber,
         cardExpDate,
         cardCvv,
+        status : method === PaymentMethod.CARD ? PaymentStatus.APROVADO : PaymentStatus.ESPERA
       };
 
       await paymentDatabase.createPayment(newPayment);

@@ -16,5 +16,7 @@ CREATE TABLE IF NOT EXISTS Wirecard_payments (
     card_number VARCHAR(16),
     card_exp_date VARCHAR(10),
     card_cvv VARCHAR(3),
+    status ENUM("APROVADO", "ESPERA", "NEGADO") NOT NULL,
     FOREIGN KEY (client_id) REFERENCES Wirecard_clients(id)
 );
+
