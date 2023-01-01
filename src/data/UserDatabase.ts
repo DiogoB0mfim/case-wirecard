@@ -1,7 +1,8 @@
 import BaseDatabase from "./BaseDatabase";
 import { User } from "../models/User";
+import { UserRepository } from "../business/UserRepository";
 
-export class UserDatabase extends BaseDatabase {
+export class UserDatabase extends BaseDatabase implements UserRepository{
   public static table = "Wirecard_clients";
 
   public async createUser(user: User) {

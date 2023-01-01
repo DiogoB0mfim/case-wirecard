@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import { PaymentBusiness } from "../business/PaymentBusiness";
 import { PaymentDTO } from "../models/Payment";
 
-const paymentBusiness = new PaymentBusiness();
-
 export class PaymentController {
+  constructor(
+    private paymentBusiness : PaymentBusiness
+  ){};
+
   public async createPayment(req: Request, res: Response) {
     try {
       const { clientId, method, amount, cardHolderName, cardNumber, cardExpDate, cardCvv } = req.body;
@@ -20,7 +22,7 @@ export class PaymentController {
         cardCvv,
       };
 
-      const result = await paymentBusiness.createPayment(newPayment, token);
+      const result = await this.paymentBusiness.createPayment(newPayment, token);
 
       res.status(200).send({ data: result });
     } catch (error: any) {
@@ -30,7 +32,7 @@ export class PaymentController {
 
   public async getPayments(req: Request, res: Response) {
     try {
-      const result = await paymentBusiness.getPayments();
+      const result = await this.paymentBusiness.getPayments();
       res.status(200).send({ data: result });
     } catch (error: any) {
       res.status(400).send(error.message);
