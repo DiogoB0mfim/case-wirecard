@@ -1,8 +1,4 @@
 import { User, UserDTO, UserLogin } from "../models/User";
-import { HashManager } from "../services/HashManager";
-import { IdGenerator } from "../services/IdGenerator";
-import { UserDatabase } from "../data/UserDatabase";
-import { TokenGenerator } from "../services/TokenGenerator";
 import {
   CustomError,
   IncorrectPassword,
@@ -12,13 +8,17 @@ import {
   InvalidPassword,
   InvalidUser,
 } from "../error/CustomError";
-
-const userDatabase = new UserDatabase();
-const idGenerator = new IdGenerator();
-const hashManager = new HashManager();
-const tokenGenerator = new TokenGenerator();
+import { UserRepository } from "./UserRepository";
+import { IHashManager, IIdGenerator, ITokenGenerator } from "./Port";
 
 export class UserBusiness {
+  constructor(
+    private userDatabase: UserRepository,
+    private hashManager: IHashManager,
+    private idGenerator:IIdGenerator,
+    private tokenGenerator: ITokenGenerator
+  ){};
+  
   public async createUser(user: UserDTO) {
     try {
       const { name, email, password, cpf } = user;
@@ -39,8 +39,8 @@ export class UserBusiness {
         throw new InvalidCpf();
       }
 
-      const id = idGenerator.generate();
-      const hashPassword = await hashManager.hash(password);
+      const id = this.idGenerator.generate();
+      const hashPassword = await this.hashManager.hash(password);
 
       const newUser: User = {
         id: id,
@@ -50,8 +50,8 @@ export class UserBusiness {
         cpf: cpf,
       };
 
-      await userDatabase.createUser(newUser);
-      const token = tokenGenerator.generateToken({ id });
+      await this.userDatabase.createUser(newUser);
+      const token = this.tokenGenerator.generateToken({ id });
 
       return token;
     } catch (error: any) {
@@ -71,19 +71,19 @@ export class UserBusiness {
         throw new InvalidPassword();
       }
 
-      const user = await userDatabase.findUser(email);
+      const user = await this.userDatabase.findUser(email);
 
       if (user === undefined) {
         throw new InvalidUser();
       }
 
-      const isValidPass = await hashManager.compare(password, user.password);
+      const isValidPass = await this.hashManager.compare(password, user.password);
 
       if (!isValidPass) {
         throw new IncorrectPassword();
       }
 
-      const token = tokenGenerator.generateToken({ id: user.id });
+      const token = this.tokenGenerator.generateToken({ id: user.id });
 
       return token;
     } catch (error: any) {

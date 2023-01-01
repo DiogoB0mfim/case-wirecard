@@ -1,7 +1,4 @@
 import { Payment, PaymentDTO, PaymentMethod, PaymentStatus } from "../models/Payment";
-import { IdGenerator } from "../services/IdGenerator";
-import { TokenGenerator } from "../services/TokenGenerator";
-import { PaymentDatabase } from "../data/PaymentDatabase";
 import {
   CustomError,
   InvalidAuthenticatorData,
@@ -11,12 +8,16 @@ import {
   InvalidToken,
   NoPaymentsRegistered,
 } from "../error/CustomError";
-
-const paymentDatabase = new PaymentDatabase();
-const idGenerator = new IdGenerator();
-const tokenGenerator = new TokenGenerator();
+import { IIdGenerator, ITokenGenerator } from "./Port";
+import { PaymentRepository } from "./PaymentRepository";
 
 export class PaymentBusiness {
+  constructor(
+    private paymentDatabase: PaymentRepository,
+    private idGenerator:IIdGenerator,
+    private tokenGenerator: ITokenGenerator
+  ){};
+
   public async createPayment(payment: PaymentDTO, token: string) {
     try {
       const { clientId, method, amount, cardHolderName, cardNumber, cardExpDate, cardCvv } = payment;
@@ -32,7 +33,7 @@ export class PaymentBusiness {
       }
 
       if (method === PaymentMethod.BOLETO) {
-        operationResponse = idGenerator.generate();
+        operationResponse = this.idGenerator.generate();
       }
 
       if (method === PaymentMethod.CARD && cardHolderName && cardNumber && cardExpDate && cardCvv) {
@@ -47,13 +48,13 @@ export class PaymentBusiness {
         throw new InvalidToken();
       }
 
-      const authData = tokenGenerator.getData(token);
+      const authData = this.tokenGenerator.getData(token);
 
       if (!authData.id) {
         throw new InvalidAuthenticatorData();
       }
 
-      const id = idGenerator.generate();
+      const id = this.idGenerator.generate();
 
       const newPayment: Payment = {
         paymentId: id,
@@ -67,7 +68,7 @@ export class PaymentBusiness {
         status : method === PaymentMethod.CARD ? PaymentStatus.APROVADO : PaymentStatus.ESPERA
       };
 
-      await paymentDatabase.createPayment(newPayment);
+      await this.paymentDatabase.createPayment(newPayment);
       return operationResponse;
     } catch (error: any) {
       throw new CustomError(400, error.message);
@@ -76,7 +77,7 @@ export class PaymentBusiness {
 
   public async getPayments() {
     try {
-      const result = await paymentDatabase.getPayments();
+      const result = await this.paymentDatabase.getPayments();
 
       if (result.length < 1) {
         throw new NoPaymentsRegistered();

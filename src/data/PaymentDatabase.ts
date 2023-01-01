@@ -1,7 +1,8 @@
+import { PaymentRepository } from "../business/PaymentRepository";
 import { Payment } from "../models/Payment";
 import BaseDatabase from "./BaseDatabase";
 
-export class PaymentDatabase extends BaseDatabase {
+export class PaymentDatabase extends BaseDatabase implements PaymentRepository {
   public static table = "Wirecard_payments";
 
   public async createPayment(payment: Payment) {
