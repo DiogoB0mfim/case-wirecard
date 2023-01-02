@@ -1,6 +1,7 @@
 import { Payment, PaymentDTO, PaymentMethod, PaymentStatus } from "../models/Payment";
 import {
   CustomError,
+  InvalidAmount,
   InvalidAuthenticatorData,
   InvalidCard,
   InvalidInfos,
@@ -24,7 +25,7 @@ export class PaymentBusiness {
 
       let operationResponse = null;
 
-      if (!clientId || !method || !amount) {
+      if (!clientId || !method) {
         throw new InvalidInfos();
       }
 
@@ -42,6 +43,10 @@ export class PaymentBusiness {
 
       if (method === PaymentMethod.CARD && !cardHolderName || method === PaymentMethod.CARD && !cardNumber || method === PaymentMethod.CARD && !cardExpDate || method === PaymentMethod.CARD && !cardCvv) {
         throw new InvalidCard();
+      }
+
+      if (amount <= 0) {
+        throw new InvalidAmount();
       }
 
       if (!token) {
@@ -75,8 +80,19 @@ export class PaymentBusiness {
     }
   }
 
-  public async getPayments() {
+  public async getPayments(token : string) {
     try {
+
+      if (!token) {
+        throw new InvalidToken();
+      }
+
+      const authData = this.tokenGenerator.getData(token);
+
+      if (!authData.id) {
+        throw new InvalidAuthenticatorData();
+      }
+      
       const result = await this.paymentDatabase.getPayments();
 
       if (result.length < 1) {

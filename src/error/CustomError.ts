@@ -70,4 +70,11 @@ export class NoPaymentsRegistered extends CustomError {
   }
 }
 
+export class InvalidAmount extends CustomError {
+  constructor() {
+    super(400, "Valor precisa ser maior que zero!");
+  }
+}
+
+
 

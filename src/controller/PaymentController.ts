@@ -32,7 +32,9 @@ export class PaymentController {
 
   public async getPayments(req: Request, res: Response) {
     try {
-      const result = await this.paymentBusiness.getPayments();
+      const token = req.headers.authorization as string;
+
+      const result = await this.paymentBusiness.getPayments(token);
       res.status(200).send({ data: result });
     } catch (error: any) {
       res.status(400).send(error.message);
