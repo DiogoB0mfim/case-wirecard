@@ -21,7 +21,7 @@ Content-Type: application/json
 ###
 POST http://localhost:3003/payment/create-transaction
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZjLWZkYjQtNDlhOS04YTY2LTk2YjIyYjg2NTA5YiJ9LCJpYXQiOjE2NzI1NDQxNjIsImV4cCI6MTY3MjU0Nzc2Mn0.9dpOq9SESVbvPzCq3egwKmanY-vN6vBwk6eCEaxigS4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZjLWZkYjQtNDlhOS04YTY2LTk2YjIyYjg2NTA5YiJ9LCJpYXQiOjE2NzI2OTI1OTUsImV4cCI6MTY3MjY5NjE5NX0.MDSmQX8dPapdheR6dSHqUwECXbZnTRBCO5jxVc1OdsE
 
 {
     "clientId" : "6802c66c-fdb4-49a9-8a66-96b22b86509b", 
@@ -35,3 +35,4 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZj
 
 ###
 GET http://localhost:3003/payment/get-payments
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4MDJjNjZjLWZkYjQtNDlhOS04YTY2LTk2YjIyYjg2NTA5YiJ9LCJpYXQiOjE2NzI2OTI1OTUsImV4cCI6MTY3MjY5NjE5NX0.MDSmQX8dPapdheR6dSHqUwECXbZnTRBCO5jxVc1OdsE
