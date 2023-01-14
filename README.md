@@ -1,34 +1,38 @@
-> 👨‍💻 Sobre
-* Este foi um pequeno projeto que desenvolvi com o intuito de iniciar no WebScrapping, ele serve para pegar dados de um site de cotação de moedas em tempo real para que eu possa consumir esses dados no meu front-end. Foi utilizado na criação do back-end a lib ```Puppeeter``` e no front-end ```ReactJS```, ```Axios``` e ```Styled-components```.
+<p align="center">
+  <a href="https://imgur.com/DeUmGfz"><img src="https://i.imgur.com/DeUmGfz.png" title="source: imgur.com" /></a>
+<p/>
+
+> ⚙ Principais tecnologias utlizadas
+
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
 <br/>
 
-
 > 📃 Documentação 
+
 * Encontra-se no arquivo requests.rest
 <br/>
 
-> ⚙ Como rodar o back-end 
+> 👨‍💻 Como rodar o projeto 
   
 * Clonar o repositório
 
-* Abrir a pasta de back
-  
 * Rodar `npm install`
+
+* Criar um arquivo `.env` na pasta raiz do projeto:
+
+ ``` 
+   PORT = 3003
+   DB_HOST = 
+   DB_USER = 
+   DB_PASSWORD = 
+   DB_DATABASE = 
+   JWT_KEY = "secret"
+```
+
+* Criar tabelas no arquivo ```tables.sql```
 
 * Rodar `npm start` para ligar o servidor
 
 <br/>
-
-> 🖼 Como rodar o front-end 
-  
-* Clonar o repositório
-
-* Abrir a pasta de front
-  
-* Rodar `npm install`
-
-* Rodar `npm start` para ligar o servidor
-
-<br/>
-
-
